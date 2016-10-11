@@ -64,13 +64,13 @@ export class API {
   }
 
   singleConventionNews(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/updates`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/updates?_items_per_page=100`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   singleConventionBadges(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes?_items_per_page=100`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
