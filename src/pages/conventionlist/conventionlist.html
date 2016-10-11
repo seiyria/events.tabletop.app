@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Tabletop.Events</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="toggleSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button (click)="openSorts()">
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refreshSearch($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-searchbar
+    *ngIf="searchVisible"
+    debounce="400"
+    showCancelButton="true"
+    [(ngModel)]="filterCriteria.query"
+    (ionInput)="updateSearch($event)"
+    (ionCancel)="cancelSearch()"
+  ></ion-searchbar>
+
+  <ion-list>
+    <button ion-item *ngFor="let con of conventions" (click)="itemTapped($event, con)">
+      <h2><strong>{{ con.name }}</strong></h2>
+      <h3>{{ con.geolocation.name }}</h3>
+      <p>{{ con.start_date | date:'EEE, MMM d'}} - {{ con.end_date | date:'EEE, MMM d' }}</p>
+    </button>
+  </ion-list>
+</ion-content>

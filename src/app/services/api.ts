@@ -1,0 +1,83 @@
+
+import _ from 'lodash';
+
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+@Injectable()
+export class API {
+  private baseUrl = 'https://tabletop.events/api';
+
+  constructor(private http: Http) {}
+
+  allConventions(opts: any) : Observable {
+    const params = new URLSearchParams();
+    _.each(opts, (val, key) => {
+      if(_.isArray(val)) {
+        _.each(val, subVal => params.append(key, subVal));
+        return;
+      }
+      params.set(key, val);
+    });
+    return this.http.get(`${this.baseUrl}/convention`, { search: params })
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  singleConventionAll(id: string, opts: any) : Promise {
+    return this.singleConvention(id, opts)
+      .toPromise()
+      .then(data => {
+        const con = data.result;
+        return this.singleConventionNews(id)
+          .toPromise()
+          .then(newsData => {
+            con._news = _.sortBy(newsData.result.items, 'update_number').reverse();
+            return this.singleConventionBadges(id)
+              .toPromise()
+              .then(badgeData => {
+                con._badgetypes = _.sortBy(badgeData.result.items, 'name');
+                return this.singleConventionVenue(con.venue_id)
+                  .toPromise()
+                  .then(venueData => {
+                    con._venue = venueData.result;
+                    return con;
+                  });
+              });
+          });
+      });
+  }
+
+  singleConvention(id: string, opts: any) : Observable {
+    const params = new URLSearchParams();
+    _.each(opts, (val, key) => {
+      if(_.isArray(val)) return;
+      params.set(key, val);
+    });
+    return this.http.get(`${this.baseUrl}/convention/${id}`, { search: params })
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  singleConventionNews(id: string) : Observable {
+    return this.http.get(`${this.baseUrl}/convention/${id}/updates`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  singleConventionBadges(id: string) : Observable {
+    return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  singleConventionVenue(venueId: string) : Observable {
+    return this.http.get(`${this.baseUrl}/venue/${venueId}`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+}

@@ -1,0 +1,35 @@
+
+<ion-card>
+
+  <ion-item>
+    <h2>{{ convention._venue.name }}</h2>
+    <p>{{ convention._venue.formatted_address }}</p>
+  </ion-item>
+
+  <div #map id="map"></div>
+
+  <ion-card-content>
+    {{ convention.venue_notes }}
+  </ion-card-content>
+
+  <ion-row>
+    <ion-col>
+      <ion-icon name="call"></ion-icon>
+      <a primary clear small target="_system" href="tel:{{convention._venue.formatted_phone_number}}">
+        Call
+      </a>
+    </ion-col>
+    <ion-col>
+      <ion-icon name="globe"></ion-icon>
+      <a primary clear small target="_system" href="{{convention._venue.website_uri}}">
+        Web
+      </a>
+    </ion-col>
+    <ion-col>
+      <ion-icon name="car"></ion-icon>
+      <a primary clear small target="_system" href="https://maps.google.com?daddr={{convention._venue.formatted_address}}">
+        Directions
+      </a>
+    </ion-col>
+  </ion-row>
+</ion-card>

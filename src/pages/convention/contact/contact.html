@@ -1,0 +1,22 @@
+<ion-list>
+  <a ion-item *ngIf="convention.website_uri" target="_system" href="{{ convention.website_uri }}">
+    <ion-icon name="globe" item-left></ion-icon>
+    {{ convention.website_uri }}
+  </a>
+  <a ion-item *ngIf="convention.email_address" target="_system" href="mailto:{{ convention.email_address }}">
+    <ion-icon name="mail" item-left></ion-icon>
+    {{ convention.email_address }}
+  </a>
+  <a ion-item *ngIf="convention.phone_number" target="_system" href="tel:{{ convention.phone_number }}">
+    <ion-icon name="call" item-left></ion-icon>
+    {{ convention.phone_number }}
+  </a>
+  <a ion-item *ngIf="convention.twitter_handle" target="_system" href="https://twitter.com/{{ convention.twitter_handle }}">
+    <ion-icon name="logo-twitter" item-left></ion-icon>
+    @{{ convention.twitter_handle }}
+  </a>
+  <a ion-item *ngIf="convention.facebook_page" target="_system" href="{{ convention.facebook_page }}">
+    <ion-icon name="logo-facebook" item-left></ion-icon>
+    Facebook
+  </a>
+</ion-list>

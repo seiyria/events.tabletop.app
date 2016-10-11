@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ convention.name || 'Loading...' }}</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="refreshConvention($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <page-convention-news        [convention]="convention" *ngIf="conView === 'News'"></page-convention-news>
+  <page-convention-description [convention]="convention" *ngIf="conView === 'Description'"></page-convention-description>
+  <page-convention-contact     [convention]="convention" *ngIf="conView === 'Contact'"></page-convention-contact>
+  <page-convention-badges      [convention]="convention" *ngIf="conView === 'Registration'"></page-convention-badges>
+  <page-convention-venue       [convention]="convention" *ngIf="conView === 'Venue'"></page-convention-venue>
+
+</ion-content>

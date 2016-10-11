@@ -1,0 +1,16 @@
+
+<ion-card *ngFor="let news of convention._news">
+  <ion-card-header>{{ news.name }}</ion-card-header>
+  <ion-card-content>
+    <div [innerHTML]="news.body_html"></div>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <ion-note><ion-icon name="calendar"></ion-icon> Posted {{ news.date_sent | date:'medium' }}</ion-note>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+<ion-card *ngIf="!convention._news.length">
+  <ion-card-content>No news has been posted for this event.</ion-card-content>
+</ion-card>
