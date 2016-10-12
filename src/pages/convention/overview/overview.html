@@ -1,0 +1,55 @@
+
+<ion-card *ngIf="convention._news.length">
+  <ion-card-header>
+    <ion-row>
+      <ion-col>Latest News</ion-col>
+      <ion-col text-right>
+        <a primary clear small (click)="forwardTo('News')">More <ion-icon name="arrow-forward"></ion-icon></a>
+      </ion-col>
+    </ion-row>
+
+  </ion-card-header>
+  <ion-card-content>
+    <div><strong>{{ convention._news[0].name }}</strong></div>
+    <div [innerHTML]="convention._news[0].body_html"></div>
+  </ion-card-content>
+  <ion-row>
+    <ion-col>
+      <ion-note><ion-icon name="calendar"></ion-icon> Posted {{ convention._news[0].date_sent | date:'medium' }}</ion-note>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+<ion-card *ngIf="!convention._news.length">
+  <ion-card-content>No news has been posted for this event.</ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>About This Event</ion-card-header>
+  <ion-card-content>
+    <div [innerHTML]="convention.description_html"></div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+
+  <ion-card-header>
+    <ion-row>
+      <ion-col>Event Venue</ion-col>
+      <ion-col text-right>
+        <a primary clear small (click)="forwardTo('Venue')">More <ion-icon name="arrow-forward"></ion-icon></a>
+      </ion-col>
+    </ion-row>
+  </ion-card-header>
+
+  <ion-item>
+    <h2>{{ convention._venue.name }}</h2>
+    <p>{{ convention._venue.formatted_address }}</p>
+  </ion-item>
+
+  <ion-card-content>
+    {{ convention.venue_notes }}
+  </ion-card-content>
+
+</ion-card>
+

@@ -28,7 +28,7 @@ export class ConventionList {
     private API: API) {
 
     appState.currentConvention.next({});
-    appState.currentConventionView.next('News');
+    appState.currentConventionView.next('Overview');
     this.filterCriteria = { _sort_order: 'asc', _order_by: 'name', _include_related_objects: RELATED_MODELS };
     this.search();
   }

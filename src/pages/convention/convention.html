@@ -14,6 +14,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <page-convention-overview    [convention]="convention" [appState]="appState" *ngIf="conView === 'Overview'"></page-convention-overview>
   <page-convention-news        [convention]="convention" *ngIf="conView === 'News'"></page-convention-news>
   <page-convention-description [convention]="convention" *ngIf="conView === 'Description'"></page-convention-description>
   <page-convention-contact     [convention]="convention" *ngIf="conView === 'Contact'"></page-convention-contact>

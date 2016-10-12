@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import { Convention } from '../pages/convention/convention';
 import { ConventionList } from '../pages/conventionlist/conventionlist';
 
+import { ConventionOverview } from '../pages/convention/overview/overview';
 import { ConventionBadges } from '../pages/convention/badges/badges';
 import { ConventionContact } from '../pages/convention/contact/contact';
 import { ConventionDescription } from '../pages/convention/description/description';
@@ -19,6 +20,7 @@ import { AppState } from './services/appstate';
     MyApp,
     Convention,
     ConventionList,
+    ConventionOverview,
     ConventionBadges,
     ConventionContact,
     ConventionDescription,

@@ -28,8 +28,8 @@ export class MyApp {
     ];
 
     this.conPages = [
+      { title: 'Overview' },
       { title: 'News', badge: (con) => con.updates_count },
-      { title: 'Description' },
       { title: 'Contact' },
       { title: 'Registration' },
       { title: 'Venue' }
