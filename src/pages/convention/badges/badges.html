@@ -3,6 +3,7 @@
   <a ion-item
      text-wrap
      [class.hidden]="badge.sellable == 0"
+     [attr.disabled]="badge.available_count == 0 ? true : null"
      *ngFor="let badge of convention._badgetypes"
      target="_system"
      href="https://tabletop.events{{badge.view_uri}}">
