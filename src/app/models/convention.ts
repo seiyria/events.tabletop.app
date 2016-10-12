@@ -8,3 +8,8 @@ export class Convention {
     public description: string
   ) {}
 }
+
+export const fixConvention = (convention) => {
+  convention.start_date = new Date(convention.start_date.split('-').join('/'));
+  convention.end_date = new Date(convention.end_date.split('-').join('/'));
+};

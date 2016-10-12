@@ -1,6 +1,8 @@
 
 import _ from 'lodash';
 
+import { fixConvention } from '../models/convention';
+
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -45,6 +47,7 @@ export class API {
                   .toPromise()
                   .then(venueData => {
                     con._venue = venueData.result;
+                    fixConvention(con);
                     return con;
                   });
               });

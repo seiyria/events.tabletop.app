@@ -1,6 +1,8 @@
+import _ from 'lodash';
+
 import { Component } from '@angular/core';
 
-import { Convention as ConventionModel, RELATED_MODELS } from '../../app/models/convention';
+import { Convention as ConventionModel, fixConvention, RELATED_MODELS } from '../../app/models/convention';
 import { PagingInfo } from '../../app/models/paging-info';
 import { Convention } from '../convention/convention';
 
@@ -67,6 +69,9 @@ export class ConventionList {
 
   private searchReults(data) {
     const { paging, items } = data.result;
+
+    _.each(items, fixConvention);
+
     this.pagingInfo = paging;
     this.conventions = items;
   }
