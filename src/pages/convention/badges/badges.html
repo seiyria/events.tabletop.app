@@ -6,8 +6,15 @@
      *ngFor="let badge of convention._badgetypes"
      target="_system"
      href="https://tabletop.events{{badge.view_uri}}">
-    <h3>{{ badge.name }}</h3>
-    <h4>{{ badge.available_count }}/{{ badge.max_available_count }} left (${{ badge.price }})</h4>
-    <p>{{ badge.description }}</p>
+    <ion-row>
+      <ion-col text-uppercase><strong>{{ badge.name }}</strong></ion-col>
+      <ion-col text-right><strong>${{ badge.price }}</strong></ion-col>
+    </ion-row>
+    <h4>
+      <ion-row>
+        <ion-col>{{ badge.description }}</ion-col>
+        <ion-col text-right width-33><em>{{ badge.available_count }}/{{ badge.max_available_count }} left</em></ion-col>
+      </ion-row>
+      </h4>
   </a>
 </ion-list>
