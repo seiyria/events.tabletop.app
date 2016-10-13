@@ -20,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
   conPages: Array<{title: string, show?: (ConventionModel) => boolean|number, badge?: (ConventionModel) => number}>;
-i
+
   constructor(
     public platform: Platform,
     public push: Push,
