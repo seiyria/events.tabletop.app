@@ -1,21 +1,21 @@
 
 <ion-card *ngIf="convention._news.length">
-  <ion-card-header>
-    <ion-row>
-      <ion-col>Latest News</ion-col>
-      <ion-col text-right>
-        <a primary clear small (click)="forwardTo('News')">More <ion-icon name="arrow-forward"></ion-icon></a>
-      </ion-col>
-    </ion-row>
-
-  </ion-card-header>
+  <ion-card-header>Latest News</ion-card-header>
   <ion-card-content>
     <div><strong>{{ convention._news[0].name }}</strong></div>
     <div [innerHTML]="convention._news[0].body_html"></div>
   </ion-card-content>
   <ion-row>
+    <ion-col offset-10>
+      <span color="muted"><ion-icon name="calendar"></ion-icon> Posted {{ convention._news[0].date_sent | date:'medium' }}</span>
+    </ion-col>
+  </ion-row>
+  <ion-row *ngIf="convention._news.length > 1">
     <ion-col>
-      <ion-note><ion-icon name="calendar"></ion-icon> Posted {{ convention._news[0].date_sent | date:'medium' }}</ion-note>
+      <button class="more-button" ion-button full outline text-left color="muted" (click)="forwardTo('News')">
+        <ion-icon name="arrow-forward"></ion-icon>
+        <span>&nbsp;More News</span>
+      </button>
     </ion-col>
   </ion-row>
 </ion-card>
@@ -33,14 +33,7 @@
 
 <ion-card>
 
-  <ion-card-header>
-    <ion-row>
-      <ion-col>Event Venue</ion-col>
-      <ion-col text-right>
-        <a primary clear small (click)="forwardTo('Venue')">More <ion-icon name="arrow-forward"></ion-icon></a>
-      </ion-col>
-    </ion-row>
-  </ion-card-header>
+  <ion-card-header>Event Venue</ion-card-header>
 
   <ion-item>
     <h2>{{ convention._venue.name }}</h2>
@@ -48,7 +41,15 @@
   </ion-item>
 
   <ion-card-content>
-    {{ convention.venue_notes }}
+    <div>{{ convention.venue_notes }}</div>
+    <ion-row *ngIf="convention._news.length > 1">
+      <ion-col>
+        <button class="more-button" ion-button full outline text-left color="muted" (click)="forwardTo('Venue')">
+          <ion-icon name="arrow-forward"></ion-icon>
+          <span>&nbsp;Venue Information</span>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-card-content>
 
 </ion-card>

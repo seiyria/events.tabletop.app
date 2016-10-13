@@ -5,8 +5,8 @@
     <div [innerHTML]="news.body_html"></div>
   </ion-card-content>
   <ion-row>
-    <ion-col>
-      <ion-note><ion-icon name="calendar"></ion-icon> Posted {{ news.date_sent | date:'medium' }}</ion-note>
+    <ion-col offset-10>
+      <span color="muted"><ion-icon name="calendar"></ion-icon> Posted {{ news.date_sent | date:'medium' }}</span>
     </ion-col>
   </ion-row>
 </ion-card>
