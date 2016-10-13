@@ -6,7 +6,7 @@ import { Convention as ConventionModel, fixConvention, RELATED_MODELS } from '..
 import { PagingInfo } from '../../app/models/paging-info';
 import { Convention } from '../convention/convention';
 
-import { LoadingController, NavController, ActionSheetController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, ActionSheetController, NavParams } from 'ionic-angular';
 import { API } from '../../app/services/api';
 import { AppState } from '../../app/services/appstate';
 
@@ -22,6 +22,7 @@ export class ConventionList {
 
   constructor(
     public navCtrl: NavController,
+    public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
     public loadingCtrl: LoadingController,
     private appState: AppState,
@@ -110,6 +111,9 @@ export class ConventionList {
       .then(data => {
         this.appState.currentConvention.next(data);
         loader.dismissAll();
+      })
+      .catch(() => {
+        loader.dismissAll();
       });
   }
 
@@ -119,6 +123,15 @@ export class ConventionList {
         this.navCtrl.setRoot(Convention, {
           id: item.id
         });
+      })
+      .catch(e => {
+        console.error(e);
+        const alert = this.alertCtrl.create({
+          title: 'Error Loading Data',
+          subTitle: `${e.message}`,
+          buttons: ['OK']
+        });
+        alert.present();
       });
   }
 }

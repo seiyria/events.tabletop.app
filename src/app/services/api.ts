@@ -34,23 +34,22 @@ export class API {
     return this.singleConvention(id, opts)
       .toPromise()
       .then(data => {
+
         const con = data.result;
-        return this.singleConventionNews(id)
-          .toPromise()
-          .then(newsData => {
-            con._news = _.sortBy(newsData.result.items, 'update_number').reverse();
-            return this.singleConventionBadges(id)
-              .toPromise()
-              .then(badgeData => {
-                con._badgetypes = _.sortBy(badgeData.result.items, 'name');
-                return this.singleConventionVenue(con.venue_id)
-                  .toPromise()
-                  .then(venueData => {
-                    con._venue = venueData.result;
-                    fixConvention(con);
-                    return con;
-                  });
-              });
+
+        const news =    this.singleConventionNews(id).toPromise();
+        const badges =  this.singleConventionBadges(id).toPromise();
+        const venue =   this.singleConventionVenue(con.venue_id).toPromise();
+
+        return Promise.all([news, badges, venue])
+          .then(allConData => {
+            const [newsData, badgesData, venueData] = allConData;
+            con._news =       _.sortBy(newsData.result.items, 'update_number').reverse();
+            con._badgetypes = _.sortBy(badgesData.result.items, 'name');
+            con._venue =      venueData.result;
+
+            fixConvention(con);
+            return con;
           });
       });
   }
