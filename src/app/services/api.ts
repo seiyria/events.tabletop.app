@@ -47,11 +47,11 @@ export class API {
         return Promise.all([news, badges, exhibitors, prototypes, events, venue])
           .then(allConData => {
             const [newsData, badgesData, exhibitorsData, prototypesData, eventsData, venueData] = allConData;
-            con._news =       _.sortBy(newsData.result.items, 'update_number').reverse();
-            con._exhibitors = _.sortBy(exhibitorsData.result.items, 'name');
-            con._prototypes = _.sortBy(prototypesData.result.items, 'name');
-            con._events =     _.sortBy(eventsData.result.items, 'name');
-            con._badgetypes = _.sortBy(badgesData.result.items, 'name');
+            con._news =       newsData.result.items;
+            con._exhibitors = exhibitorsData.result.items;
+            con._prototypes = prototypesData.result.items;
+            con._events =     eventsData.result.items;
+            con._badgetypes = badgesData.result.items;
             con._venue =      venueData.result;
 
             fixConvention(con);
@@ -72,31 +72,31 @@ export class API {
   }
 
   singleConventionNews(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/updates?_items_per_page=100`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/updates?_items_per_page=100&_order_by=update_number&_sort_order=desc`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   singleConventionExhibitors(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/exhibitors?_items_per_page=100`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/exhibitors?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   singleConventionEvents(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/events?_items_per_page=100`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/events?_items_per_page=100&_order_by=start_date`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   singleConventionPrototypes(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/prototypes?_items_per_page=100`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/prototypes?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   singleConventionBadges(id: string) : Observable {
-    return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes?_items_per_page=100`)
+    return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
