@@ -6,7 +6,7 @@ import { Convention as ConventionModel, fixConvention, RELATED_MODELS } from '..
 import { PagingInfo } from '../../app/models/paging-info';
 import { Convention } from '../convention/convention';
 
-import { AlertController, LoadingController, NavController, ActionSheetController, NavParams } from 'ionic-angular';
+import { AlertController, LoadingController, NavController, ActionSheetController } from 'ionic-angular';
 import { API } from '../../app/services/api';
 import { AppState } from '../../app/services/appstate';
 

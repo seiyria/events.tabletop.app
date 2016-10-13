@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
+import { Push, PushToken } from '@ionic/cloud-angular';
 
 import { Convention as ConventionModel } from './models/convention';
 import { ConventionList } from '../pages/conventionlist/conventionlist';
@@ -18,9 +19,14 @@ export class MyApp {
   conMenu: ConventionModel | any;
 
   pages: Array<{title: string, component: any}>;
-  conPages: Array<{title: string}>;
+  conPages: Array<{title: string, show?: (ConventionModel) => boolean|number, badge?: (ConventionModel) => number}>;
+i
+  constructor(
+    public platform: Platform,
+    public push: Push,
+    public alertCtrl: AlertController,
+    private appState: AppState) {
 
-  constructor(public platform: Platform, private appState: AppState) {
     this.initializeApp();
 
     this.pages = [
@@ -54,6 +60,27 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
+
+      this.platform.registerBackButtonAction(() => {
+        if(!this.nav.canGoBack()) return;
+        this.nav.pop();
+      }, 500);
+
+      this.push.register().then((t: PushToken) => {
+        return this.push.saveToken(t);
+      });
+
+      this.push.rx.notification()
+        .subscribe((msg) => {
+          const alert = this.alertCtrl.create({
+            title: msg.title,
+            subTitle: msg.text,
+            buttons: ['OK']
+          });
+          alert.present();
+        });
+    }).catch(e => {
+      console.error(e);
     });
   }
 

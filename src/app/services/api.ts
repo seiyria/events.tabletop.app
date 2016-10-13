@@ -1,10 +1,10 @@
 
 import _ from 'lodash';
 
-import { fixConvention } from '../models/convention';
+import { fixConvention, Convention } from '../models/convention';
 
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
@@ -16,7 +16,7 @@ export class API {
 
   constructor(private http: Http) {}
 
-  allConventions(opts: any) : Observable {
+  allConventions(opts: any) : Observable<any> {
     const params = new URLSearchParams();
     _.each(opts, (val, key) => {
       if(_.isArray(val)) {
@@ -30,12 +30,12 @@ export class API {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionAll(id: string, opts: any) : Promise {
+  singleConventionAll(id: string, opts: any) : Promise<any> {
     return this.singleConvention(id, opts)
       .toPromise()
-      .then(data => {
+      .then((data: any) => {
 
-        const con = data.result;
+        const con: Convention = data.result;
 
         const news =        this.singleConventionNews(id).toPromise();
         const badges =      this.singleConventionBadges(id).toPromise();
@@ -60,7 +60,7 @@ export class API {
       });
   }
 
-  singleConvention(id: string, opts: any) : Observable {
+  singleConvention(id: string, opts: any) : Observable<Convention> {
     const params = new URLSearchParams();
     _.each(opts, (val, key) => {
       if(_.isArray(val)) return;
@@ -71,37 +71,37 @@ export class API {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionNews(id: string) : Observable {
+  singleConventionNews(id: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/convention/${id}/updates?_items_per_page=100&_order_by=update_number&_sort_order=desc`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionExhibitors(id: string) : Observable {
+  singleConventionExhibitors(id: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/convention/${id}/exhibitors?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionEvents(id: string) : Observable {
+  singleConventionEvents(id: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/convention/${id}/events?_items_per_page=100&_order_by=start_date`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionPrototypes(id: string) : Observable {
+  singleConventionPrototypes(id: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/convention/${id}/prototypes?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionBadges(id: string) : Observable {
+  singleConventionBadges(id: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/convention/${id}/badgetypes?_items_per_page=100&_order_by=name`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionVenue(venueId: string) : Observable {
+  singleConventionVenue(venueId: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/venue/${venueId}`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

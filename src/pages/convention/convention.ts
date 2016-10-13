@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 
 import { Convention as ConventionModel, RELATED_MODELS } from '../../app/models/convention';
-import { PagingInfo } from '../../app/models/paging-info';
 
-import { LoadingController, NavController, ActionSheetController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { API } from '../../app/services/api';
 import { AppState } from '../../app/services/appstate';
 
