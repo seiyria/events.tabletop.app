@@ -36,4 +36,8 @@
       <p>{{ con.start_date | date:'EEE, MMM d'}} - {{ con.end_date | date:'EEE, MMM d' }}</p>
     </button>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="refreshInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

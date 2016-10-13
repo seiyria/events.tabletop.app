@@ -19,6 +19,8 @@ export class ConventionList {
   pagingInfo: PagingInfo;
   filterCriteria: any;
   searchVisible: boolean;
+  _currentPage: number;
+  hasAllItems: boolean;
 
   constructor(
     public navCtrl: NavController,
@@ -68,21 +70,40 @@ export class ConventionList {
     this.refreshSearch();
   }
 
-  private searchReults(data) {
+  private searchResults(data) {
     const { paging, items } = data.result;
 
     _.each(items, fixConvention);
 
     this.pagingInfo = paging;
-    this.conventions = items;
+    this._currentPage = paging.page_number;
+
+    if(this._currentPage === 1) {
+      this.conventions = items;
+    } else {
+      this.conventions.push(...items);
+    }
+
+    this.hasAllItems = this._currentPage == paging.total_pages;
   }
 
   refreshSearch(refresher?: any) {
     this.API.allConventions(this.filterCriteria)
       .subscribe(data => {
-        this.searchReults(data);
+        this.searchResults(data);
 
         if(refresher) refresher.complete();
+      });
+  }
+
+  refreshInfinite(infinite?: any) {
+    this.filterCriteria._page_number = this._currentPage + 1;
+    this.API.allConventions(this.filterCriteria)
+      .subscribe(data => {
+        this.searchResults(data);
+
+        if(infinite) infinite.complete();
+        if(this.hasAllItems) infinite.enable(false);
       });
   }
 
@@ -95,7 +116,7 @@ export class ConventionList {
 
     this.API.allConventions(this.filterCriteria)
       .subscribe(data => {
-        this.searchReults(data);
+        this.searchResults(data);
         loader.dismissAll();
       });
   }
