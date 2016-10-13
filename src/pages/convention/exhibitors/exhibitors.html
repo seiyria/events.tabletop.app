@@ -1,0 +1,11 @@
+
+<ion-list>
+  <a ion-item
+     text-wrap
+     *ngFor="let exhibitor of convention._exhibitors"
+     target="_system"
+     href="https://tabletop.events{{exhibitor.view_uri}}">
+    <h2><strong>{{ exhibitor.name }}</strong></h2>
+    <p [innerHTML]="exhibitor.description_html"></p>
+  </a>
+</ion-list>

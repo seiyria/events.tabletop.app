@@ -31,7 +31,10 @@ export class MyApp {
       { title: 'Overview' },
       { title: 'News', badge: (con) => con.updates_count },
       { title: 'Contact' },
-      { title: 'Registration' },
+      { title: 'Registration', show: (con) => con._badgetypes.length },
+      { title: 'Exhibitors', badge: (con) => con._exhibitors.length, show: (con) => con._exhibitors.length },
+      { title: 'Prototypes', badge: (con) => con._prototypes.length, show: (con) => con._prototypes.length },
+      { title: 'Events', badge: (con) => con._events.length, show: (con) => con._events.length },
       { title: 'Venue' }
     ];
 

@@ -19,6 +19,9 @@
   <page-convention-description [convention]="convention" *ngIf="conView === 'Description'"></page-convention-description>
   <page-convention-contact     [convention]="convention" *ngIf="conView === 'Contact'"></page-convention-contact>
   <page-convention-badges      [convention]="convention" *ngIf="conView === 'Registration'"></page-convention-badges>
+  <page-convention-exhibitors  [convention]="convention" *ngIf="conView === 'Exhibitors'"></page-convention-exhibitors>
+  <page-convention-events      [convention]="convention" *ngIf="conView === 'Events'"></page-convention-events>
+  <page-convention-prototypes  [convention]="convention" *ngIf="conView === 'Prototypes'"></page-convention-prototypes>
   <page-convention-venue       [convention]="convention" *ngIf="conView === 'Venue'"></page-convention-venue>
 
 </ion-content>

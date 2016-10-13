@@ -15,7 +15,11 @@
     <ion-list *ngIf="conMenu?.id">
       <ion-item-divider>{{ conMenu.name }}</ion-item-divider>
 
-      <button menuClose ion-item *ngFor="let p of conPages" (click)="changeConPage(p.title)">
+      <button menuClose
+              ion-item
+              *ngFor="let p of conPages"
+              (click)="changeConPage(p.title)"
+              [class.hidden]="p.show && !p.show(conMenu)">
         <span>{{ p.title }}</span>
         <ion-badge *ngIf="p.badge && p.badge(conMenu)">{{ p.badge(conMenu) }}</ion-badge>
       </button>

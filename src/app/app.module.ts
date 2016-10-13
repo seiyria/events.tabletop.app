@@ -7,6 +7,9 @@ import { ConventionList } from '../pages/conventionlist/conventionlist';
 
 import { ConventionOverview } from '../pages/convention/overview/overview';
 import { ConventionBadges } from '../pages/convention/badges/badges';
+import { ConventionExhibitors } from '../pages/convention/exhibitors/exhibitors';
+import { ConventionPrototypes } from '../pages/convention/prototypes/prototypes';
+import { ConventionEvents } from '../pages/convention/events/events';
 import { ConventionContact } from '../pages/convention/contact/contact';
 import { ConventionDescription } from '../pages/convention/description/description';
 import { ConventionNews } from '../pages/convention/news/news';
@@ -22,6 +25,9 @@ import { AppState } from './services/appstate';
     ConventionList,
     ConventionOverview,
     ConventionBadges,
+    ConventionExhibitors,
+    ConventionPrototypes,
+    ConventionEvents,
     ConventionContact,
     ConventionDescription,
     ConventionNews,

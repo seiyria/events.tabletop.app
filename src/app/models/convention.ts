@@ -18,4 +18,8 @@ export const fixConvention = (convention) => {
   _.each(convention._news, news => {
     news.date_sent = new Date(news.date_sent.split('-').join('/'));
   });
+
+  _.each(convention._events, event => {
+    event.start_date = new Date(event.start_date.split('-').join('/'));
+  });
 };
