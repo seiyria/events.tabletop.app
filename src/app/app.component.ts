@@ -79,8 +79,6 @@ export class MyApp {
           });
           alert.present();
         });
-    }).catch(e => {
-      console.error(e);
     });
   }
 
