@@ -1,12 +1,19 @@
 
 <ion-list>
-  <a ion-item
-     text-wrap
-     *ngFor="let event of convention._events"
-     target="_system"
-     href="https://tabletop.events{{event.view_uri}}">
-    <h3><strong>{{ event.name }}</strong></h3>
-    <h4>{{ event.startdaypart_name }}, {{ event.duration }} minutes</h4>
-    <p>{{ event.description }}</p>
-  </a>
+  <ion-item-sliding *ngFor="let event of convention._events">
+    <a ion-item
+       text-wrap
+       target="_system"
+       href="https://tabletop.events{{event.view_uri}}">
+      <h3><strong>{{ event.name }}</strong></h3>
+      <h4>{{ event.startdaypart_name }}, {{ event.duration }} minutes</h4>
+      <p>{{ event.description }}</p>
+    </a>
+
+    <ion-item-options side="right">
+      <button ion-button color="primary" (click)="setReminder(event)">
+        <ion-icon name="alarm"></ion-icon> Remind Me
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-list>

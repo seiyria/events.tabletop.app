@@ -10,4 +10,9 @@ export class ConventionEvents {
   @Input() convention: ConventionModel | any;
 
   constructor() {}
+
+  setReminder(event) {
+    console.log(event, event.name, event.start_date);
+    alert('Not yet implemented.');
+  }
 }
