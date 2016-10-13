@@ -76,7 +76,7 @@ export class ConventionList {
     _.each(items, fixConvention);
 
     this.pagingInfo = paging;
-    this._currentPage = paging.page_number;
+    this._currentPage = +paging.page_number;
 
     if(this._currentPage === 1) {
       this.conventions = items;
@@ -84,7 +84,7 @@ export class ConventionList {
       this.conventions.push(...items);
     }
 
-    this.hasAllItems = this._currentPage == paging.total_pages;
+    this.hasAllItems = this._currentPage >= paging.total_pages;
   }
 
   refreshSearch(refresher?: any) {
@@ -97,6 +97,10 @@ export class ConventionList {
   }
 
   refreshInfinite(infinite?: any) {
+    if(this.hasAllItems) {
+      infinite.enable(false);
+      return;
+    }
     this.filterCriteria._page_number = this._currentPage + 1;
     this.API.allConventions(this.filterCriteria)
       .subscribe(data => {
