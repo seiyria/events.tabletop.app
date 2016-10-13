@@ -14,21 +14,21 @@
 
   <ion-row>
     <ion-col>
-      <ion-icon name="call"></ion-icon>
-      <a primary clear small target="_system" href="tel:{{convention._venue.formatted_phone_number}}">
-        Call
+      <a class="more-button" color="dark" ion-button full outline text-left target="_system" href="tel:{{convention._venue.formatted_phone_number}}">
+        <ion-icon name="call"></ion-icon>
+        <span>&nbsp;Call</span>
       </a>
     </ion-col>
     <ion-col>
-      <ion-icon name="globe"></ion-icon>
-      <a primary clear small target="_system" href="{{convention._venue.website_uri}}">
-        Web
+      <a class="more-button" color="dark" ion-button full outline text-left target="_system" href="{{convention._venue.website_uri}}">
+        <ion-icon name="globe"></ion-icon>
+        <span>&nbsp;Web</span>
       </a>
     </ion-col>
     <ion-col>
-      <ion-icon name="car"></ion-icon>
-      <a primary clear small target="_system" href="https://maps.google.com?daddr={{convention._venue.formatted_address}}">
-        Directions
+      <a class="more-button" color="dark" ion-button full outline text-left target="_system" href="https://maps.google.com?daddr={{convention._venue.formatted_address}}">
+        <ion-icon name="car"></ion-icon>
+        <span>&nbsp;Directions</span>
       </a>
     </ion-col>
   </ion-row>

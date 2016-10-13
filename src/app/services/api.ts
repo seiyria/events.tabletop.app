@@ -53,7 +53,7 @@ export class API {
             con._events =     _.sortBy(eventsData.result.items, 'name');
             con._badgetypes = _.sortBy(badgesData.result.items, 'name');
             con._venue =      venueData.result;
-            
+
             fixConvention(con);
             return con;
           });
