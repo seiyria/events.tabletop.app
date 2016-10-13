@@ -106,4 +106,10 @@ export class API {
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  singleConventionPrototypeDetails(prototypeId: string) : Observable<any> {
+    return this.http.get(`${this.baseUrl}/prototype/${prototypeId}?_include_related_objects=user`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

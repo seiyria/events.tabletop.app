@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ prototype.name || 'Loading...' }}</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card text-wrap>
+    <ion-card-header class="wrap-header">{{ prototype.name }}</ion-card-header>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-icon name="hammer"></ion-icon> Created by {{ prototype.user.real_name }}
+        </ion-item>
+        <ion-item>
+          <ion-icon name="people"></ion-icon> {{ prototype.min_players }}-{{ prototype.max_players }} players
+        </ion-item>
+        <ion-item>
+          <ion-icon name="clock"></ion-icon> Takes approximately {{ prototype.play_time }} minutes
+        </ion-item>
+        <ion-item>
+          <ion-icon name="information-circle"></ion-icon> {{ prototype.synopsis }}
+        </ion-item>
+        <a ion-item *ngIf="prototype.has_more_info" target="_system" href="{{prototype.more_info}}">
+          <ion-icon name="globe"></ion-icon> More Information
+        </a>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="prototype.description">
+    <ion-card-header>Description</ion-card-header>
+    <ion-card-content>
+      <div [innerHTML]="prototype.description"></div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

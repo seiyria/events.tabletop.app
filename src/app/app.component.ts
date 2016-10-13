@@ -59,12 +59,14 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      StatusBar.styleDefault();
+      if(!window.cordova) return;
 
       this.platform.registerBackButtonAction(() => {
         if(!this.nav.canGoBack()) return;
         this.nav.pop();
       }, 500);
+
+      StatusBar.styleDefault();
 
       this.push.register().then((t: PushToken) => {
         return this.push.saveToken(t);
@@ -79,6 +81,7 @@ export class MyApp {
           });
           alert.present();
         });
+
     });
   }
 

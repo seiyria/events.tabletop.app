@@ -10,3 +10,9 @@
     justify-content: initial;
   }
 }
+
+ion-card[text-wrap] {
+  ion-card-header {
+    white-space: normal;
+  }
+}

@@ -11,6 +11,7 @@ import { ConventionOverview } from '../pages/convention/overview/overview';
 import { ConventionBadges } from '../pages/convention/badges/badges';
 import { ConventionExhibitors } from '../pages/convention/exhibitors/exhibitors';
 import { ConventionPrototypes } from '../pages/convention/prototypes/prototypes';
+import { ConventionPrototypesDetail } from '../pages/convention/prototypes/prototype/prototype';
 import { ConventionEvents } from '../pages/convention/events/events';
 import { ConventionContact } from '../pages/convention/contact/contact';
 import { ConventionDescription } from '../pages/convention/description/description';
@@ -47,6 +48,7 @@ const cloudSettings: CloudSettings = {
     ConventionBadges,
     ConventionExhibitors,
     ConventionPrototypes,
+    ConventionPrototypesDetail,
     ConventionEvents,
     ConventionContact,
     ConventionDescription,
@@ -61,7 +63,8 @@ const cloudSettings: CloudSettings = {
   entryComponents: [
     MyApp,
     Convention,
-    ConventionList
+    ConventionList,
+    ConventionPrototypesDetail
   ],
   providers: [
     API,

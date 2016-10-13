@@ -31,7 +31,7 @@ export class Convention {
     this.convention = this.appState.currentConvention.getValue();
     this.conViewSub = this.appState.currentConventionView.subscribe(view => {
       this.conView = view;
-    })
+    });
   }
 
   refreshConvention(refresher) {

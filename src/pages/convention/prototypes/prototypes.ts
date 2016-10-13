@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
+import { ConventionPrototypesDetail } from './prototype/prototype';
 
 import { Convention as ConventionModel } from '../../../app/models/convention';
 
@@ -9,5 +12,11 @@ import { Convention as ConventionModel } from '../../../app/models/convention';
 export class ConventionPrototypes {
   @Input() convention: ConventionModel | any;
 
-  constructor() {}
+  constructor(
+    public navCtrl: NavController
+  ) {}
+
+  open(id) {
+    this.navCtrl.push(ConventionPrototypesDetail, { id });
+  }
 }

@@ -97,10 +97,7 @@ export class ConventionList {
   }
 
   refreshInfinite(infinite?: any) {
-    if(this.hasAllItems) {
-      infinite.enable(false);
-      return;
-    }
+    if(this.hasAllItems) {}
     this.filterCriteria._page_number = this._currentPage + 1;
     this.API.allConventions(this.filterCriteria)
       .subscribe(data => {
