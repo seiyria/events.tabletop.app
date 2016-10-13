@@ -29,7 +29,7 @@ export class ConventionList {
 
     appState.currentConvention.next({});
     appState.currentConventionView.next('Overview');
-    this.filterCriteria = { _sort_order: 'asc', _order_by: 'name', _include_related_objects: RELATED_MODELS };
+    this.filterCriteria = { _sort_order: 'asc', _order_by: 'start_date', _include_related_objects: RELATED_MODELS };
     this.search();
   }
 
