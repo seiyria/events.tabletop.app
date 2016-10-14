@@ -6,7 +6,7 @@
     <div [innerHTML]="convention._news[0].body_html"></div>
   </ion-card-content>
   <ion-row>
-    <ion-col offset-10>
+    <ion-col class="offset-3">
       <span color="muted"><ion-icon name="calendar"></ion-icon> Posted {{ convention._news[0].date_sent | date:'medium' }}</span>
     </ion-col>
   </ion-row>
