@@ -26,3 +26,14 @@
 .no-padding-left {
   padding-left: 0 !important;
 }
+
+ion-card-content.remove-extra-spacing {
+  ion-label {
+    margin: 0;
+  }
+
+  ion-col {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
