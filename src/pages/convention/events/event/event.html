@@ -14,22 +14,22 @@
     <ion-card-header class="wrap-header">{{ event.name }}</ion-card-header>
     <ion-card-content>
       <ion-list no-lines>
-        <ion-item>
-          <ion-icon name="person"></ion-icon> Hosted by {{ event.user.real_name }} <span *ngIf="event.room_name">@ {{ event.room_name }}</span>
+        <ion-item *ngIf="(event.user && event.user.real_name) || event.room_name">
+          <ion-icon name="person"></ion-icon> Hosted <span *ngIf="event.user && event.user.real_name">by {{ event.user.real_name }}</span> <span *ngIf="event.room_name">@ {{ event.room_name }}</span>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="event.type && event.type.name">
           <ion-icon name="game-controller-b"></ion-icon> {{ event.type.name }}
         </ion-item>
-        <ion-item>
-          <ion-icon name="clock"></ion-icon> {{ event.startdaypart_name }} (Lasts {{ event.duration }} minutes)
+        <ion-item *ngIf="event.startdaypart_name">
+          <ion-icon name="clock"></ion-icon> {{ event.startdaypart_name }} <span *ngIf="event.duration">(Lasts {{ event.duration }} minutes)</span>
         </ion-item>
-        <a ion-item target="_system" href="">
+        <a ion-item target="_system" href="" *ngIf="event.price">
           <ion-icon name="cash"></ion-icon> Costs ${{ event.price }} ({{ event.available_count }} tickets left)
         </a>
-        <ion-item>
+        <ion-item *ngIf="event.age_range">
           <ion-icon name="analytics"></ion-icon> Rated {{ event._options._age_range[event.age_range] }}
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="event.description">
           <ion-icon name="information-circle"></ion-icon> {{ event.description }}
         </ion-item>
         <a ion-item *ngIf="event.more_info_uri" target="_system" href="{{event.more_info_uri}}">
