@@ -62,8 +62,8 @@
       </ion-list>
     </ion-card-content>
 
-    <ion-row *ngIf="event.price || event.has_more_info">
-      <ion-col no-padding *ngIf="event.price">
+    <ion-row *ngIf="(event.price && event.available_count > 0) || event.has_more_info">
+      <ion-col no-padding *ngIf="event.price && event.available_count > 0">
         <a class="more-button" ion-button target="_system" href="https://tabletop.events{{event.view_uri}}" full outline text-left color="muted">
           <ion-icon name="cash"></ion-icon>
           <span>&nbsp;Buy Ticket (${{event.price}})</span>
