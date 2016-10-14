@@ -5,7 +5,7 @@
      (click)="open(prototype.id)"
      *ngFor="let prototype of convention._prototypes">
     <h2><strong>{{ prototype.name }}</strong></h2>
-    <h4>{{ prototype.min_players }}-{{ prototype.max_players }} players, {{ prototype.play_time }} minutes</h4>
+    <h3>{{ prototype.min_players }}-{{ prototype.max_players }} players, {{ prototype.play_time }} minutes</h3>
     <p>{{ prototype.synopsis }}</p>
   </a>
 </ion-list>
