@@ -34,7 +34,6 @@ export class ConventionEventsDetail {
       .then(event => {
         this.event = event.result;
         fixEvent(this.event);
-        console.log(this.event);
         loader.dismissAll();
       })
       .catch(() => {
