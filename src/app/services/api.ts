@@ -112,4 +112,10 @@ export class API {
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  singleConventionEventDetails(eventId: string) : Observable<any> {
+    return this.http.get(`${this.baseUrl}/event/${eventId}?_include_options=1&_include_related_objects=user&_include_related_objects=type`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

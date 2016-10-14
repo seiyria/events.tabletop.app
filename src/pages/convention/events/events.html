@@ -2,9 +2,7 @@
 <ion-list>
   <ion-item-sliding *ngFor="let event of convention._events">
     <a ion-item
-       text-wrap
-       target="_system"
-       href="https://tabletop.events{{event.view_uri}}">
+       text-wrap (click)="open(event.id)">
       <h3><strong>{{ event.name }}</strong></h3>
       <h4>{{ event.startdaypart_name }}, {{ event.duration }} minutes</h4>
       <p>{{ event.description }}</p>

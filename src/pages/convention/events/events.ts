@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
+import { ConventionEventsDetail } from './event/event';
 import { Convention as ConventionModel } from '../../../app/models/convention';
 
 @Component({
@@ -9,7 +11,13 @@ import { Convention as ConventionModel } from '../../../app/models/convention';
 export class ConventionEvents {
   @Input() convention: ConventionModel | any;
 
-  constructor() {}
+  constructor(
+    public navCtrl: NavController
+  ) {}
+
+  open(id) {
+    this.navCtrl.push(ConventionEventsDetail, { id });
+  }
 
   setReminder(event) {
     console.log(event, event.name, event.start_date);

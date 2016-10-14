@@ -13,6 +13,7 @@ import { ConventionExhibitors } from '../pages/convention/exhibitors/exhibitors'
 import { ConventionPrototypes } from '../pages/convention/prototypes/prototypes';
 import { ConventionPrototypesDetail } from '../pages/convention/prototypes/prototype/prototype';
 import { ConventionEvents } from '../pages/convention/events/events';
+import { ConventionEventsDetail } from '../pages/convention/events/event/event';
 import { ConventionContact } from '../pages/convention/contact/contact';
 import { ConventionDescription } from '../pages/convention/description/description';
 import { ConventionNews } from '../pages/convention/news/news';
@@ -50,6 +51,7 @@ const cloudSettings: CloudSettings = {
     ConventionPrototypes,
     ConventionPrototypesDetail,
     ConventionEvents,
+    ConventionEventsDetail,
     ConventionContact,
     ConventionDescription,
     ConventionNews,
@@ -64,7 +66,8 @@ const cloudSettings: CloudSettings = {
     MyApp,
     Convention,
     ConventionList,
-    ConventionPrototypesDetail
+    ConventionPrototypesDetail,
+    ConventionEventsDetail
   ],
   providers: [
     API,
