@@ -23,7 +23,7 @@
         <ion-item *ngIf="event.startdaypart_name">
           <ion-icon name="clock"></ion-icon> {{ event.startdaypart_name }} <span *ngIf="event.duration">(Lasts {{ event.duration }} minutes)</span>
         </ion-item>
-        <a ion-item target="_system" href="" *ngIf="event.price">
+        <a ion-item target="_system" href="https://tabletop.events{{event.view_uri}}" *ngIf="event.price">
           <ion-icon name="cash"></ion-icon> Costs ${{ event.price }} ({{ event.available_count }} tickets left)
         </a>
         <ion-item *ngIf="event.age_range">
