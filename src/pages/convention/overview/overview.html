@@ -42,15 +42,16 @@
 
   <ion-card-content>
     <div>{{ convention.venue_notes }}</div>
-    <ion-row *ngIf="convention._news.length > 1">
-      <ion-col no-padding>
-        <button class="more-button" ion-button full outline text-left color="muted" (click)="forwardTo('Venue')">
-          <ion-icon name="arrow-forward"></ion-icon>
-          <span>&nbsp;Venue Information</span>
-        </button>
-      </ion-col>
-    </ion-row>
   </ion-card-content>
+
+  <ion-row>
+    <ion-col no-padding>
+      <button class="more-button" ion-button full outline text-left color="muted" (click)="forwardTo('Venue')">
+        <ion-icon name="arrow-forward"></ion-icon>
+        <span>&nbsp;Venue Information</span>
+      </button>
+    </ion-col>
+  </ion-row>
 
 </ion-card>
 
