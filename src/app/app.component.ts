@@ -10,8 +10,6 @@ import { AppState } from './services/appstate';
 
 const MAX_ITEMS = 100;
 
-declare var cordova: any;
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -71,7 +69,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if(!cordova) return;
+      if(!window['cordova']) return;
 
       this.platform.registerBackButtonAction(() => {
         if(!this.nav.canGoBack()) return;
