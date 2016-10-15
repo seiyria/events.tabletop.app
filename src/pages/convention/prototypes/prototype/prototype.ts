@@ -23,8 +23,7 @@ export class ConventionPrototypesDetail {
     this.prototype = { user: {}, _images: [] };
     this.prototypeId = this.navParams.get('id');
     this.imageSliderOptions = {
-      pager: true,
-      loop: true
+      pager: true
     };
   }
 
