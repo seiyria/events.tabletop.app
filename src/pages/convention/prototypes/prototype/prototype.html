@@ -57,6 +57,15 @@
 
   </ion-card>
 
+  <ion-card *ngIf="prototype._images.length">
+    <ion-card-header>Pictures</ion-card-header>
+    <ion-slides [options]="imageSliderOptions">
+      <ion-slide *ngFor="let image of prototype._images">
+        <img src="{{image.image_uri}}" />
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
   <ion-card *ngIf="prototype.description">
     <ion-card-header>Description</ion-card-header>
     <ion-card-content>

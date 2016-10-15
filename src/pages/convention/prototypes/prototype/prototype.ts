@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Prototype as PrototypeModel, fixPrototype } from '../../../../app/models/prototype';
+import { Prototype as PrototypeModel } from '../../../../app/models/prototype';
 
 import { NavParams, LoadingController } from 'ionic-angular';
 import { API } from '../../../../app/services/api';
@@ -13,13 +13,19 @@ export class ConventionPrototypesDetail {
   prototype: PrototypeModel | any;
   prototypeId: string;
 
+  imageSliderOptions: any;
+
   constructor(
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     private API: API) {
 
-    this.prototype = { user: {} };
+    this.prototype = { user: {}, _images: [] };
     this.prototypeId = this.navParams.get('id');
+    this.imageSliderOptions = {
+      pager: true,
+      loop: true
+    };
   }
 
   ngOnInit() {
@@ -30,10 +36,8 @@ export class ConventionPrototypesDetail {
     loader.present();
 
     this.API.singleConventionPrototypeDetails(this.prototypeId)
-      .toPromise()
       .then(prototype => {
-        this.prototype = prototype.result;
-        fixPrototype(this.prototype);
+        this.prototype = prototype;
         loader.dismissAll();
       })
       .catch(() => {

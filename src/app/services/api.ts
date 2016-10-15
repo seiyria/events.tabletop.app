@@ -2,6 +2,7 @@
 import _ from 'lodash';
 
 import { fixConvention, Convention } from '../models/convention';
+import { fixPrototype, Prototype } from '../models/prototype';
 
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams } from '@angular/http';
@@ -107,8 +108,30 @@ export class API {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  singleConventionPrototypeDetails(prototypeId: string) : Observable<any> {
+  singleConventionPrototypeDetails(prototypeId: string) : Promise<any> {
     return this.http.get(`${this.baseUrl}/prototype/${prototypeId}?_include_related_objects=user`)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+      .toPromise()
+      .then(data => {
+        const prototype: Prototype = data.result;
+
+        const images = this.singleConventionPrototypeDetailsImages(prototypeId).toPromise();
+
+        return Promise.all([images])
+          .then((data: any) => {
+            const [imageData] = data;
+
+            prototype._images = imageData.result.items;
+
+            fixPrototype(prototype);
+            return prototype;
+          });
+      });
+  }
+
+  singleConventionPrototypeDetailsImages(prototypeId: string) : Promise<any> {
+    return this.http.get(`${this.baseUrl}/prototype/${prototypeId}/images?_items_per_page=100&_order_by=date_updated`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

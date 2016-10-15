@@ -11,7 +11,8 @@ export class Prototype {
     public min_players: string,
     public max_players: string,
 
-    public user: any
+    public user: any,
+    public _images: any
 ) {}
 }
 
