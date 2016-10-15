@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Event as EventModel, fixEvent } from '../../../../app/models/event';
 
@@ -16,6 +17,7 @@ export class ConventionEventsDetail {
   constructor(
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
+    public domSanitizer: DomSanitizer,
     private API: API) {
 
     this.event = { user: {}, type: {}, _options: { _age_range: {} } };
@@ -33,6 +35,7 @@ export class ConventionEventsDetail {
       .toPromise()
       .then(event => {
         this.event = event.result;
+        this.event._long_description_html = this.domSanitizer.bypassSecurityTrustHtml(this.event.long_description_html);
         fixEvent(this.event);
         loader.dismissAll();
       })

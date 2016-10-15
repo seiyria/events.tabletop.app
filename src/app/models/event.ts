@@ -5,6 +5,7 @@ export class Event {
     public name: string,
     public description: string,
     public long_description_html: string,
+    public _long_description_html: string,
     public price: string,
     public duration: string,
     public start_date: any,
