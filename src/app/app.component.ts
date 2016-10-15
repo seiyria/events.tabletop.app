@@ -8,6 +8,8 @@ import { ConventionList } from '../pages/conventionlist/conventionlist';
 
 import { AppState } from './services/appstate';
 
+const MAX_ITEMS = 100;
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -35,12 +37,20 @@ export class MyApp {
 
     this.conPages = [
       { title: 'Overview' },
-      { title: 'News', badge: (con) => con.updates_count },
+      { title: 'News',
+        badge: (con) => con.updates_count },
       { title: 'Contact' },
-      { title: 'Registration', show: (con) => con._badgetypes.length },
-      { title: 'Exhibitors', badge: (con) => con._exhibitors.length, show: (con) => con._exhibitors.length },
-      { title: 'Prototypes', badge: (con) => con._prototypes.length, show: (con) => con._prototypes.length },
-      { title: 'Events', badge: (con) => con._events.length, show: (con) => con._events.length },
+      { title: 'Registration',
+        show: (con) => con._badgetypes.length },
+      { title: 'Exhibitors',
+        badge: (con) => `${con._exhibitors.length}${con._exhibitors.length === MAX_ITEMS ? '+': ''}`,
+        show: (con) => con._exhibitors.length },
+      { title: 'Prototypes',
+        badge: (con) => `${con._prototypes.length}${con._prototypes.length === MAX_ITEMS ? '+': ''}`,
+        show: (con) => con._prototypes.length },
+      { title: 'Events',
+        badge: (con) => `${con._events.length}${con._events.length === MAX_ITEMS ? '+': ''}`,
+        show: (con) => con._events.length },
       { title: 'Venue' }
     ];
 
