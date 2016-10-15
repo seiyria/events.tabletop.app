@@ -17,42 +17,42 @@
 
         <ion-item *ngIf="(event.user && event.user.real_name) || event.room_name">
           <ion-row>
-            <ion-col width-10><ion-icon name="person"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="person"></ion-icon></ion-col>
             <ion-col>Hosted <span *ngIf="event.user && event.user.real_name">by {{ event.user.real_name }}</span> <span *ngIf="event.room_name">@ {{ event.room_name }}</span></ion-col>
           </ion-row>
         </ion-item>
 
         <ion-item *ngIf="event.type && event.type.name">
           <ion-row>
-            <ion-col width-10><ion-icon name="game-controller-b"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="game-controller-b"></ion-icon></ion-col>
             <ion-col>{{ event.type.name }}</ion-col>
           </ion-row>
         </ion-item>
 
         <ion-item *ngIf="event.startdaypart_name">
           <ion-row>
-            <ion-col width-10><ion-icon name="clock"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="clock"></ion-icon></ion-col>
             <ion-col>{{ event.startdaypart_name }} <span *ngIf="event.duration">(Lasts {{ event.duration }} minutes)</span></ion-col>
           </ion-row>
         </ion-item>
 
         <ion-item *ngIf="event.available_count">
           <ion-row>
-            <ion-col width-10><ion-icon name="pricetag"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="pricetag"></ion-icon></ion-col>
             <ion-col>{{ event.available_count }} tickets left</ion-col>
           </ion-row>
         </ion-item>
 
         <ion-item *ngIf="event.age_range">
           <ion-row>
-            <ion-col width-10><ion-icon name="analytics"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="analytics"></ion-icon></ion-col>
             <ion-col>Rated {{ event._options._age_range[event.age_range] }}</ion-col>
           </ion-row>
         </ion-item>
 
         <ion-item *ngIf="event.description">
           <ion-row>
-            <ion-col width-10><ion-icon name="information-circle"></ion-icon></ion-col>
+            <ion-col width-10><ion-icon color="muted" name="information-circle"></ion-icon></ion-col>
             <ion-col>{{ event.description }}</ion-col>
           </ion-row>
         </ion-item>
