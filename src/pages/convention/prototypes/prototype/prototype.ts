@@ -37,6 +37,7 @@ export class ConventionPrototypesDetail {
     this.API.singleConventionPrototypeDetails(this.prototypeId)
       .then(prototype => {
         this.prototype = prototype;
+        this.imageSliderOptions.pager = this.prototype._images.length > 1;
         loader.dismissAll();
       })
       .catch(() => {
