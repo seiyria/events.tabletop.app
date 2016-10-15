@@ -130,7 +130,7 @@ export class API {
       });
   }
 
-  singleConventionPrototypeDetailsImages(prototypeId: string) : Promise<any> {
+  singleConventionPrototypeDetailsImages(prototypeId: string) : Observable<any> {
     return this.http.get(`${this.baseUrl}/prototype/${prototypeId}/images?_items_per_page=100&_order_by=date_updated`)
       .map((res:Response) => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

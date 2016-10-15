@@ -61,7 +61,7 @@
     <ion-card-header>Pictures</ion-card-header>
     <ion-slides [options]="imageSliderOptions">
       <ion-slide *ngFor="let image of prototype._images">
-        <img src="{{image.image_uri}}" />
+        <img src="http:{{image.image_uri}}" />
       </ion-slide>
     </ion-slides>
   </ion-card>

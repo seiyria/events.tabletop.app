@@ -10,6 +10,8 @@ import { AppState } from './services/appstate';
 
 const MAX_ITEMS = 100;
 
+declare var cordova: any;
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -21,7 +23,7 @@ export class MyApp {
   conMenu: ConventionModel | any;
 
   pages: Array<{title: string, component: any}>;
-  conPages: Array<{title: string, show?: (ConventionModel) => boolean|number, badge?: (ConventionModel) => number}>;
+  conPages: Array<{title: string, show?: (ConventionModel) => boolean|number, badge?: (ConventionModel) => string}>;
 
   constructor(
     public platform: Platform,
@@ -69,7 +71,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      if(!window.cordova) return;
+      if(!cordova) return;
 
       this.platform.registerBackButtonAction(() => {
         if(!this.nav.canGoBack()) return;
@@ -91,7 +93,6 @@ export class MyApp {
           });
           alert.present();
         });
-
     });
   }
 
