@@ -4,8 +4,8 @@
     <a ion-item
        text-wrap (click)="open(event.id)">
       <h2><strong>{{ event.name }}</strong></h2>
-      <h3>{{ event.startdaypart_name }}, {{ event.duration }} minutes</h3>
-      <p>{{ event.description }}</p>
+      <h3><span *ngIf="event.startdaypart_name">{{ event.startdaypart_name }},</span> <span *ngIf="event.duration">{{ event.duration }} minutes</span></h3>
+      <p *ngIf="event.description">{{ event.description }}</p>
     </a>
 
     <ion-item-options side="right">
