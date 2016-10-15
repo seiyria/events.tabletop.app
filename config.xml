@@ -4,7 +4,7 @@
   <description>An app for tabletop.events.</description>
   <author email="kyle@wickedwebwizardry.com" href="http://wickedwebwizardry.com/">Wicked Web Wizardry</author>
   <content src="index.html"/>
-  <access origin="*"/>
+  <access origin="*" subdomains="true"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
@@ -79,6 +79,7 @@
   <preference name="FadeSplashScreenDuration" value="0"/>
   <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="AllowInlineMediaPlayback" value="true"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
