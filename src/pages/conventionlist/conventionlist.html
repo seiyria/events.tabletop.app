@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="tte">
+  <ion-navbar color="tte" no-border-bottom>
     <ion-title>Tabletop.Events</ion-title>
 
     <ion-buttons end>
@@ -14,20 +14,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="hide-refresher-border">
 
   <ion-refresher (ionRefresh)="refreshSearch($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-searchbar
-    *ngIf="searchVisible"
-    debounce="400"
-    showCancelButton="true"
-    [(ngModel)]="filterCriteria.query"
-    (ionInput)="updateSearch($event)"
-    (ionCancel)="cancelSearch()"
-  ></ion-searchbar>
+  <ion-toolbar color="tte" *ngIf="searchVisible" no-border-top>
+    <ion-searchbar
+      color="tte"
+      debounce="400"
+      showCancelButton="true"
+      [(ngModel)]="filterCriteria.query"
+      (ionInput)="updateSearch($event)"
+      (ionCancel)="cancelSearch()"
+    ></ion-searchbar>
+  </ion-toolbar>
 
   <ion-list>
     <button ion-item *ngFor="let con of conventions" (click)="itemTapped($event, con)">
