@@ -5,6 +5,9 @@
 
 .more-button {
   border-bottom: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-height: 48px;
 
   .button-inner {
     justify-content: initial;
@@ -15,4 +18,8 @@ ion-card[text-wrap] {
   ion-card-header {
     white-space: normal;
   }
+}
+
+.button-outline-md-muted {
+  border-color: #ddd;
 }
